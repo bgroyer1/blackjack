@@ -1,0 +1,32 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+:root {
+--primary-color: #ffd60a;
+--secondary-color: #ffffff
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  background-image: url(../public/table.png);
+  background-size: cover;
+  color: var(--primary-color)
+}
+
+.hero-div {
+
+}
+
+.primary-text-color {
+  color: var(--primary-color)
+}
+
+.secondary-text-color {
+  color: var(--secondary-color)
+}
