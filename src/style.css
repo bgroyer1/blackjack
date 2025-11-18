@@ -1,32 +1,74 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 :root {
---primary-color: #ffd60a;
---secondary-color: #ffffff
+  --primary-color: #edc531;
+  --secondary-color: #ededed;
+  --project-black:  #0D0D0D;
 }
 
 body {
   margin: 0;
   padding: 0;
   display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   justify-content: center;
   align-items: center;
   height: 100dvh;
+  background-color: green;
   background-image: url(../public/table.png);
+  background-blend-mode: multiply;
   background-size: cover;
-  color: var(--primary-color)
+  color: var(--secondary-color);
 }
 
 .hero-div {
-
 }
 
 .primary-text-color {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 .secondary-text-color {
-  color: var(--secondary-color)
+  color: var(--secondary-color);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.text-el {
+  font-weight: bold;
+}
+
+.btn {
+  margin-top: 1em;
+  color: var(--project-black);
+  text-shadow: 0 0 0.5px var(--secondary-color);
+  letter-spacing: 1px;
+  background-color: var(--primary-color);
+  font-weight: 800;
+  border: none;
+  border-radius: 2px;
+  padding: 1em 2.5em;
+  width: 100%;
+}
+
+.btn:hover, .btn:focus {
+  opacity: 0.85;
+}
+
+.message-div {
+  height: 1.5em;
+}
+
+#message-el {
+
 }
