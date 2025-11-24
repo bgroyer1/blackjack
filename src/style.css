@@ -26,6 +26,7 @@ body {
 }
 
 .hero-div {
+  max-width: 310px;
 }
 
 .primary-text-color {
