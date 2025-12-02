@@ -1,58 +1,79 @@
-let firstCard = randomCard();
-let secondCard = randomCard();
-const cards = [firstCard, secondCard]
-let sum = firstCard + secondCard;
+// Global Variables
+let cards = [];
+let sum = 0;
 let hasBlackjack = false;
-let isAlive = true;
+let isAlive = false;
 let message = ``;
-const startGameBtn = document.querySelector("#start-game-btn");
-const messageEl = document.querySelector('.message-el')
-const sumEl = document.querySelector('#sum-el')
-const cardsEl = document.querySelector('#cards-el')
-const newCardBtn = document.querySelector('#new-card-btn')
 
+// Dom Elements
+const startGameBtn = document.querySelector("#start-game-btn");
+const messageEl = document.querySelector(".message-el");
+const sumEl = document.querySelector("#sum-el");
+const cardsEl = document.querySelector("#cards-el");
+const newCardBtn = document.querySelector("#new-card-btn");
+
+// Funcitons
 function startGame() {
-  renderGame();
+    newCardBtn.disabled = false;
+    let firstCard = randomCard();
+    let secondCard = randomCard();
+    isAlive = true;
+    cards = [firstCard, secondCard];
+    sum = firstCard + secondCard;
+    renderGame();
 }
 
 function randomCard() {
-  let card =  Math.floor(Math.random() * 13) + 1
+  let card = Math.floor(Math.random() * 13) + 1;
   if (card > 10) {
-    card = 10
-  }
-  return card
-}
-
-console.log(randomCard())
-
-function renderGame() {
-  cardsEl.textContent = `Cards: `
-  sumEl.innerHTML = `Sum: <span class='primary-text-color'>${sum}</span>`;
-  cards.forEach(card => cardsEl.innerHTML += `<span class='primary-text-color'>${card}</span> `)
-  if (sum < 21) {
-    message = renderMessageHTML(`Still in the`, 'game.')
-  } else if (sum === 21) {
-    hasBlackjack = true;
-    message = renderMessageHTML('You have', 'blackjack!')
+    return 10;
+  } else if (card === 1) {
+    return 11;
   } else {
-    message = renderMessageHTML("You're out of the", 'game.')
-    isAlive = false;
+    return card;
   }
-  messageEl.innerHTML = message
-}
-
-function renderMessageHTML(secondary, primary) {
-  return `<p class='message-el'>${secondary} <span class='primary-text-color bold'>${primary}</span></p>`
 }
 
 function newCard() {
-  const newCard = randomCard();
-  sum += newCard
-  cards.push(newCard)
-  renderGame();
+  if (isAlive && hasBlackjack === false) {
+    const newCard = randomCard();
+    sum += newCard;
+    cards.push(newCard);
+    renderGame();
+  }
 }
 
-newCardBtn.addEventListener('click', newCard)
+function renderGame() {
+  startGameBtn.innerText = 'RESTART GAME'
+  cardsEl.textContent = `Cards: `;
+  sumEl.innerHTML = `Sum: <span class='primary-text-color'>${sum}</span>`;
+  cards.forEach(
+    (card) =>
+      (cardsEl.innerHTML += `<span class='primary-text-color'>${card}</span> `)
+  );
+  if (sum < 21) {
+    newCardBtn.disabled = false;
+    newCardBtn.style.opacity = 1
+    message = renderMessageHTML(`Still in the`, "game.");
+  } else if (sum === 21) {
+    hasBlackjack = true;
+    newCardBtn.disabled = true;
+    newCardBtn.style.opacity = 0.5
+    message = renderMessageHTML("You have", "blackjack!");
+  } else {
+    newCardBtn.disabled = true;
+    newCardBtn.style.opacity = 0.5
+    message = renderMessageHTML("You're out of the", "game.");
+    isAlive = false;
+  }
+  messageEl.innerHTML = message;
+}
 
-startGameBtn.addEventListener("click", startGame );
+function renderMessageHTML(secondary, primary) {
+  return `<p class='message-el'>${secondary} <span class='primary-text-color bold'>${primary}</span></p>`;
+}
 
+// Event Listeners
+newCardBtn.addEventListener("click", newCard);
+
+startGameBtn.addEventListener("click", startGame);
