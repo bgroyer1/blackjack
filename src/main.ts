@@ -54,23 +54,23 @@ function renderGame(): void {
   );
   if (sum < 21) {
     newCardBtn.disabled = false;
-    newCardBtn.style.opacity = 1
+    newCardBtn.style.opacity = "1"
     message = renderMessageHTML(`Still in the`, "game.");
   } else if (sum === 21) {
     hasBlackjack = true;
     newCardBtn.disabled = true;
-    newCardBtn.style.opacity = 0.5
+    newCardBtn.style.opacity = "0.5"
     message = renderMessageHTML("You have", "blackjack!");
   } else {
     newCardBtn.disabled = true;
-    newCardBtn.style.opacity = 0.5
+    newCardBtn.style.opacity = "0.5"
     message = renderMessageHTML("You're out of the", "game.");
     isAlive = false;
   }
   messageEl.innerHTML = message;
 }
 
-function renderMessageHTML(secondary, primary) {
+function renderMessageHTML(secondary:string, primary:string):string {
   return `<p class='message-el'>${secondary} <span class='primary-text-color bold'>${primary}</span></p>`;
 }
 
