@@ -17,6 +17,7 @@ function startGame() {
     newCardBtn.disabled = false;
     let firstCard = randomCard();
     let secondCard = randomCard();
+    hasBlackjack = false;
     isAlive = true;
     cards = [firstCard, secondCard];
     sum = firstCard + secondCard;
