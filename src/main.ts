@@ -1,19 +1,19 @@
 // Global Variables
-let cards = [];
+let cards: number[] = [];
 let sum = 0;
 let hasBlackjack = false;
 let isAlive = false;
 let message = ``;
 
 // Dom Elements
-const startGameBtn = document.querySelector("#start-game-btn");
-const messageEl = document.querySelector(".message-el");
-const sumEl = document.querySelector("#sum-el");
-const cardsEl = document.querySelector("#cards-el");
-const newCardBtn = document.querySelector("#new-card-btn");
+const startGameBtn = document.querySelector<HTMLButtonElement>("#start-game-btn")!;
+const messageEl = document.querySelector<HTMLParagraphElement>(".message-el")!;
+const sumEl = document.querySelector<HTMLParagraphElement>("#sum-el")!;
+const cardsEl = document.querySelector<HTMLParagraphElement>("#cards-el")!;
+const newCardBtn = document.querySelector<HTMLButtonElement>("#new-card-btn")!;
 
-// Funcitons
-function startGame() {
+// Functions
+function startGame():void {
     newCardBtn.disabled = false;
     let firstCard = randomCard();
     let secondCard = randomCard();
@@ -24,7 +24,7 @@ function startGame() {
     renderGame();
 }
 
-function randomCard() {
+function randomCard(): number  {
   let card = Math.floor(Math.random() * 13) + 1;
   if (card > 10) {
     return 10;
@@ -35,7 +35,7 @@ function randomCard() {
   }
 }
 
-function newCard() {
+function newCard(): void {
   if (isAlive && hasBlackjack === false) {
     const newCard = randomCard();
     sum += newCard;
@@ -44,7 +44,7 @@ function newCard() {
   }
 }
 
-function renderGame() {
+function renderGame(): void {
   startGameBtn.innerText = 'RESTART GAME'
   cardsEl.textContent = `Cards: `;
   sumEl.innerHTML = `Sum: <span class='primary-text-color'>${sum}</span>`;
